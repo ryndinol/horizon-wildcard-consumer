@@ -41,9 +41,9 @@ class ProvisioningPlan extends BaseProvisioningPlan
      * @param  array  $plan
      * @return void
      */
-    public function __construct($master, array $plan)
+    public function __construct($master, array $plan, $defaults = [])
     {
-        $this->plan = $plan;
+        $this->plan = $this->applyDefaultOptions($plan, $defaults);
         $this->master = $master;
         $this->env = config('horizon.env') ?? config('app.env');
         $this->updatedSupervisors();
